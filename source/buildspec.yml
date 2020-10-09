@@ -1,0 +1,12 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - nohup python3 cloudwatch_disk_metrics.py & echo $! > pidfile
+  build:
+    commands:
+      - sleep 100
+  post_build:
+    commands:
+      - python3 cloudwatch_db_metrics.py
